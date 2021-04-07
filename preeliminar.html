@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	
+  <head>
+    <title>Alta de alumnos</title>
+   <style type="text/css">
+   
+  .caja{
+        font-size:15px;
+        font-family:Verdana,Helvetica;
+        font-weight:bold;
+        color:rgb(32, 69, 170);
+        background:#ffffff;
+        border:0px;
+        width:200px;
+        height:30px;
+       }
+</style> 
+
+    <script type="text/javascript">
+       var matricula,nombre,p_apellido,s_apellido;      
+       agregarEvento(window,'load',cargar,false);
+       function agregarEvento(ele,eve,fun,cap){
+         //Depende del navegador para que se ejecuta if o else    
+
+            if(window.attachEvent){	 
+              addAttachEvent('on'+eve,fun);	
+	    } 
+	     else{
+
+	       ele.addEventListener(eve,fun,cap);	   
+            }
+        }
+        function cargar(){
+          
+           
+           //Llamar a la funciòn agregarEvento.            
+	   agregarEvento(document.getElementById("bt_eliminar"),'click',leerDatos,false);  
+            
+       }  
+       function leerDatos(){  
+        
+         matricula=document.getElementById("text_matricula").value;
+         nombre=document.getElementById("text_nombre").value;
+         p_apellido=document.getElementById("text_p_apellido").value;
+         s_apellido=document.getElementById("text_s_apellido").value; 
+         
+        //alert(matricula+","+nombre+","+p_apellido+","+s_apellido);    
+        enviarDatos();                                      
+
+       }    
+       function enviarDatos(){
+	  conexion = new XMLHttpRequest();
+	  conexion.onreadystatechange = esperaRespuesta;
+	  conexion.open("POST","eeliminar.php",true);
+	  conexion.setRequestHeader("Content-type","application/x-www-form-urlencoded");	
+	  conexion.send("mat="+matricula+"&nom="+nombre+"&p_ape="+p_apellido +"&s_ape="+s_apellido);
+       }  
+       function esperaRespuesta(){
+          if(conexion.readyState == 4 ){	        
+	    alert(conexion.responseText);
+            //var datos = eval('('+conexion.responseText+')');
+          }
+
+       }      	                           	            	  
+    </script>
+</head>
+<body>
+   	<center>	   			   		   
+     <table border="1">    
+       <tr><td><input type="text"  id="text_matricula" class="caja"  placeholder="Matrícula"></td></tr> 
+       <tr><td><input type="text"  id="text_nombre" class="caja" placeholder="nombre"></td></tr> 
+       <tr><td><input type="text"  id="text_p_apellido" class="caja" placeholder="primer apellido"></td></tr>
+       <tr><td><input type="text"  id="text_s_apellido" class="caja"  placeholder="segundo apellido"></td></tr>  
+       
+       <tr><td><input type="button"  id="bt_eliminar" class="caja" value="eliminar" ></td></tr>
+     </table>
+    </center>                 		              
+</body>
+</html>

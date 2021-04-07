@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	
+  <head>
+    <title>Lista de estudiantes</title>
+   <style type="text/css">
+   
+  .boton{
+        font-size:15px;
+        font-family:Verdana,Helvetica;
+        font-weight:bold;
+        color:rgb(255, 255, 255);
+        background:#1a538b;
+        border:0px;
+        width:200px;
+        height:30px;
+       }
+</style> 
+
+
+
+    <script type="text/javascript">
+              
+       agregarEvento(window,'load',cargar,false);
+       function agregarEvento(ele,eve,fun,cap){
+         //Depende del navegador para que se ejecuta if o else    
+
+            if(window.attachEvent){	 
+              addAttachEvent('on'+eve,fun);	
+	    } 
+	     else{
+
+	       ele.addEventListener(eve,fun,cap);	   
+            }
+        }
+        function cargar(){
+          
+           alert("Hola");
+           //Llamar a la funciòn agregarEvento.            
+	   agregarEvento(document.getElementById("text_edad"),'keypress',validar,false);  
+            
+       }  
+       function validar(){  
+       alert("Función validar");                        
+          
+       }              	  
+                         	            	  
+    </script>
+</head>
+
+
+<body>
+   	<center>	   			   		   
+     <table border="1">       
+       <tr><td><a href="alta.html"><input type="button" value="Alta alumno" id="bt_alta_alumno" class="boton"></td></tr> 
+       <tr><td><a href="preeliminar.html"><input type="button" value="Eliminar un registro" id="bt_eliminar" class="boton"></td></tr>                    
+       <tr><td><a href="actualizar.html"><input type="button" value="Modificar" id="bt_modificar" class="boton"></td></tr> 
+       <tr><td><a href="list.php"><input type="button" value="Consultar" id="bt_consultar" class="boton"></td></tr> 
+       
+     </table>
+    </center>                 		              
+</body>
+</html>

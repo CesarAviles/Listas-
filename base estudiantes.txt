@@ -1,0 +1,9 @@
+create database estudiantes;
+use estudiantes;
+
+create table alumnos(matricula bigint,p_apellido varchar(20),s_apellido varchar(20),nombre varchar(50));
+
+
+
+
+
